@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:words/favorite_words_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,13 +29,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<String> words = nouns.take(40).toList();
-  Set<String> savedWords = Set<String>();
+  List<String> savedWords = List<String>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.bookmark),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => FavoriteWordsScreen(
+                  favoriteItems: savedWords,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
       body: ListView.separated(
         itemCount: words.length,
