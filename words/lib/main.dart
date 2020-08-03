@@ -1,6 +1,7 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'package:words/favorite_words_screen.dart';
+import 'package:words/favorite_words_route.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Likely Words',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -37,16 +39,15 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.bookmark),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => FavoriteWordsScreen(
-                  favoriteItems: savedWords,
-                ),
-              ),
+          Badge(
+            badgeContent: Text('${savedWords.length}'),
+            toAnimate: false,
+            position: BadgePosition.topRight(top: 0, right: 0),
+            child: IconButton(
+              icon: Icon(Icons.bookmark),
+              onPressed: () => pushToFavoriteWordsRoute(context),
             ),
-          )
+          ),
         ],
       ),
       body: ListView.separated(
@@ -73,6 +74,16 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           );
         },
+      ),
+    );
+  }
+
+  Future pushToFavoriteWordsRoute(BuildContext context) {
+    return Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => FavoriteWordsRoute(
+          favoriteItems: savedWords,
+        ),
       ),
     );
   }
