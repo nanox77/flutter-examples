@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      body: listOfTweets(),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,6 +69,116 @@ class _MyHomePageState extends State<MyHomePage> {
         color: color,
       ),
       onPressed: () {},
+    );
+  }
+
+  Widget listOfTweets() {
+    return Container(
+      color: Colors.white,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          tweetAvatar(),
+          tweetBody(),
+        ],
+      ),
+    );
+  }
+
+  Widget tweetText() {
+    return Text(
+      'Google’s UI toolkit to build apps for mobile, web, & desktop from a single codebase.',
+      overflow: TextOverflow.clip,
+    );
+  }
+
+  Widget tweetBody() {
+    return Expanded(
+      child: Column(
+        children: [
+          tweetHeader(),
+          tweetText(),
+          tweetButtons(),
+        ],
+      ),
+    );
+  }
+
+  Widget tweetButtons() {
+    return Container(
+      margin: const EdgeInsets.only(top: 10.0, right: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          tweetIconButton(FontAwesomeIcons.comment, '243'),
+          tweetIconButton(FontAwesomeIcons.retweet, '23K'),
+          tweetIconButton(FontAwesomeIcons.heart, '112K'),
+          tweetIconButton(FontAwesomeIcons.share, ''),
+        ],
+      ),
+    );
+  }
+
+  Widget tweetIconButton(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 18.0,
+          color: Colors.black45,
+        ),
+        Container(
+          margin: const EdgeInsets.all(6.0),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.black45,
+              fontSize: 14.0,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget tweetHeader() {
+    return Row(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(right: 5.0),
+          child: Text(
+            'Flutter',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Text(
+          '@FlutterDev · 5m',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        Spacer(),
+        IconButton(
+          icon: Icon(
+            FontAwesomeIcons.angleDown,
+            size: 14.0,
+            color: Colors.grey,
+          ),
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget tweetAvatar() {
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      child: CircleAvatar(
+        backgroundImage: NetworkImage('https://pbs.twimg.com/profile_images/1187814172307800064/MhnwJbxw_400x400.jpg'),
+      ),
     );
   }
 }
