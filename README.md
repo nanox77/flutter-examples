@@ -13,3 +13,4 @@
 - Test widget in Flutter: [Post](https://nanocastellano.medium.com/test-widget-in-flutter-5894b238ff30)
 - Parsing JSON in Dart/Flutter: [Post](https://medium.com/swlh/parsing-json-in-dart-flutter-37c411f2707a) | [Code](https://gist.github.com/nanox77/8778b6dfa45df35b85ef632e83d619e9)
 - Spotify UI clone: [Post](https://nanocastellano.medium.com/spotify-ui-clone-using-flutter-eed520071509) | [Code](spotify_clone)
+- Sweet Bake (Stack and Positioned): [Post](https://nanocastellano.medium.com/stack-and-positioned-widget-flutter-81392f9ccfc) | [Code](sweet_bake)
