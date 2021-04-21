@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurants/order_model.dart';
 
 var orders = [
   OrderModel(
@@ -32,25 +33,25 @@ var orders = [
     color: Color.fromARGB(255, 175, 205, 220),
     popularRate: "4/7",
   ),
-];
-
-class OrderModel {
-  String name;
-  String description;
-  String thumbnail;
-  String popularOrder;
-  String distance;
-  String priceRate;
-  Color color;
-  String popularRate;
-
   OrderModel(
-      {this.name,
-      this.description,
-      this.thumbnail,
-      this.popularOrder,
-      this.distance,
-      this.priceRate,
-      this.color,
-      this.popularRate});
-}
+    name: 'Sushi Shi',
+    description: 'Best sushi ever you tasted.',
+    thumbnail:
+        'https://d3ugyf2ht6aenh.cloudfront.net/stores/186/318/products/sushi-png-image1-af63eda5520a55792815132853795393-640-0.png',
+    popularOrder: "Salmon sushi",
+    distance: "1.2",
+    priceRate: "4.9",
+    color: Color.fromARGB(255, 175, 205, 180),
+    popularRate: "4/1",
+  ),
+  OrderModel(
+    name: 'Porky Ribs',
+    description: 'Ribs with BBQ sauce with french fries.',
+    thumbnail: 'https://fostershollywood.es/sites/default/files/images/product/national-ribs-de-cerdo.png',
+    popularOrder: "BBQ Ribs",
+    distance: "2.3",
+    priceRate: "3.5",
+    color: Color.fromARGB(255, 160, 185, 210),
+    popularRate: "4/0",
+  ),
+];

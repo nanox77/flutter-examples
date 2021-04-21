@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurants/order_data.dart';
 import 'package:restaurants/order_details.dart';
+import 'package:restaurants/order_model.dart';
 import 'package:restaurants/orders.dart';
 import 'package:restaurants/other_order_information_view.dart';
 import 'package:restaurants/places.dart';
 import 'package:restaurants/utils.dart';
 import 'package:restaurants/stateless_widget_extensions.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Restaurants',
-      theme: ThemeData(primaryColor: kColorBackground),
-      home: MyHomePage(title: 'Restaurants'),
-      debugShowCheckedModeBanner: false,
+    return ChangeNotifierProvider<OrderData>(
+      create: (_) => OrderData(),
+      child: MaterialApp(
+        title: 'Restaurants',
+        theme: ThemeData(primaryColor: kColorBackground),
+        home: MyHomePage(title: 'Restaurants'),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
@@ -34,6 +39,21 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         elevation: 0,
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: kColorBackground,
+              onPrimary: kColorText,
+            ),
+            onPressed: () {},
+            child: Row(
+              children: [
+                Icon(Icons.shopping_bag_outlined),
+                Text('${Provider.of<OrderData>(context).ordersQuantity}'),
+              ],
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,
@@ -178,30 +198,19 @@ class MyHomePage extends StatelessWidget {
   Widget buildOpenPlace(Place place) {
     return Stack(
       children: [
-        ShaderMask(
-          shaderCallback: (rect) {
-            return LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.white, Color.fromARGB(200, 90, 70, 130)],
-              stops: [0.7, 0.9],
-            ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
-          },
-          child: Container(
-            margin: const EdgeInsets.only(right: 10.0),
-            height: 250,
-            width: 160,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                  place.thumbnail,
-                ),
+        kIsWeb
+            ? buildOpenPlaceImage(place)
+            : ShaderMask(
+                shaderCallback: (rect) {
+                  return LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.white, Color.fromARGB(200, 90, 70, 130)],
+                    stops: [0.7, 0.9],
+                  ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+                },
+                child: buildOpenPlaceImage(place),
               ),
-            ),
-          ),
-        ),
         Positioned(
           bottom: 10.0,
           left: 10.0,
@@ -218,6 +227,23 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Container buildOpenPlaceImage(Place place) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10.0),
+      height: 250,
+      width: 160,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+            place.thumbnail,
+          ),
+        ),
+      ),
     );
   }
 

@@ -5,9 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "restaurants",
+            "name": "Flutter Web",
+            "type": "dart",
             "request": "launch",
-            "type": "dart"
+            "program": "lib/main.dart",
+            "args": [
+                "--web-renderer",
+                "html"
+            ]
         }
     ]
 }

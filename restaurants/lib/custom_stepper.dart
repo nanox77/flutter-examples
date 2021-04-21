@@ -8,12 +8,14 @@ class CustomStepper extends StatefulWidget {
     @required this.stepValue,
     @required this.iconSize,
     @required this.value,
+    @required this.callbackValue,
   });
 
   final int lowerLimit;
   final int upperLimit;
   final int stepValue;
   final double iconSize;
+  final Function callbackValue;
   int value;
 
   @override
@@ -32,6 +34,7 @@ class _CustomStepperState extends State<CustomStepper> {
           onPress: () {
             setState(() {
               widget.value = widget.value == widget.lowerLimit ? widget.lowerLimit : widget.value -= widget.stepValue;
+              widget.callbackValue(widget.value);
             });
           },
         ),
@@ -53,6 +56,7 @@ class _CustomStepperState extends State<CustomStepper> {
           onPress: () {
             setState(() {
               widget.value = widget.value == widget.upperLimit ? widget.upperLimit : widget.value += widget.stepValue;
+              widget.callbackValue(widget.value);
             });
           },
         ),
