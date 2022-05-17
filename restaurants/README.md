@@ -1,6 +1,6 @@
 # Restaurants 
 
-Post in progress.
+Check the post on https://nanocastellano.medium.com/
 
 Restaurants                |  Order details
 :-------------------------:|:-------------------------:

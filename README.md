@@ -15,3 +15,4 @@
 - Spotify UI clone: [Post](https://nanocastellano.medium.com/spotify-ui-clone-using-flutter-eed520071509) | [Code](spotify_clone)
 - Sweet Bake (Stack and Positioned): [Post](https://nanocastellano.medium.com/stack-and-positioned-widget-flutter-81392f9ccfc) | [Code](sweet_bake)
 - Shopping Wine UI: [Post](https://nanocastellano.medium.com/shopping-wine-ui-flutter-f9c8b8f8f8d9) | [Code](shopping_wine)
+- Finance UI: [Post](https://nanocastellano.medium.com/shopping-wine-ui-flutter-f9c8b8f8f8d9) | [Code](finance_app)
